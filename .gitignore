@@ -7,3 +7,5 @@ node_modules
 
 # compiled files
 *.js
+
+npm-debug.log
