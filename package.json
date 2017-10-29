@@ -16,13 +16,20 @@
     "debug": "^2.6.8",
     "ejs": "^2.5.6",
     "morgan": "^1.8.2",
-    "request": "^2.81.0"
+    "request": "^2.81.0",
+    "vm2": "^3.5.2"
   },
   "devDependencies": {
+    "@types/chai": "^4.0.4",
     "@types/debug": "^0.0.29",
     "@types/express": "^4.0.35",
+    "@types/mocha": "^2.2.44",
     "@types/node": "^7.0.31",
-    "typescript": "^2.3.4",
-    "@webtask/serverless-webtasks": "^1.0.1"
+    "@webtask/serverless-webtasks": "^1.0.1",
+    "chai": "^4.1.2",
+    "chai-http": "^3.0.0",
+    "mocha": "^4.0.1",
+    "ts-node": "^3.3.0",
+    "typescript": "^2.3.4"
   }
 }

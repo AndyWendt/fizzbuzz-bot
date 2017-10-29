@@ -3,7 +3,8 @@ import {Router, Request, Response, NextFunction} from 'express';
 import * as express from 'express';
 import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
-import HelloWorldController from "./routes/HelloWorldController";
+import SlackController from "./routes/SlackController";
+import Middleware from "./Middleware";
 
 class App {
 
@@ -58,10 +59,7 @@ class App {
         let router = express.Router();
         this.express.use('/', router);
 
-        router.get('/', HelloWorldController.get);
-        router.post('/', HelloWorldController.create);
-        router.put('/:id', HelloWorldController.update);
-        router.delete('/:id', HelloWorldController.delete);
+        router.post('/events', Middleware.checkBodyToken, Middleware.urlVerification, SlackController.events);
 
         this.express.use((req, res, next) => {
             console.log(req.baseUrl);
