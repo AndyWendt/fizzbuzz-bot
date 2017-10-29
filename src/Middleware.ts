@@ -1,4 +1,5 @@
-import {Router, Request, Response, NextFunction} from 'express';
+import {Router, Response, NextFunction} from 'express';
+import {Request} from './App';
 
 export default class Middleware {
     public static checkBodyToken(req: Request, res: Response, next: NextFunction) {

@@ -5,6 +5,17 @@ import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
 import SlackController from "./routes/SlackController";
 import Middleware from "./Middleware";
+import {Request as Req} from 'express';
+
+export interface Request extends Req {
+    webtaskContext: WebtaskContext
+}
+
+export interface WebtaskContext {
+    secrets: {
+        SLACK_VERIFICATION_TOKEN: string
+    }
+}
 
 class App {
 
