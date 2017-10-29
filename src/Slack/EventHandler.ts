@@ -3,7 +3,7 @@ import {AttemptInterface, ChallengeManagerInterface, challenges} from "../Challe
 import {InvalidEventError} from "../Errors/InvalidEventError";
 
 export interface EventHandlerInterface {
-  handle(event: EventInterface): Promise<boolean>;
+    handle(event: EventInterface): Promise<boolean>;
 }
 
 interface FileInterface {

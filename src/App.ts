@@ -1,11 +1,9 @@
-import * as path from 'path';
-import {Router, Request, Response, NextFunction} from 'express';
 import * as express from 'express';
+import {NextFunction, Request as Req, Response} from 'express';
 import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
 import SlackController from "./routes/SlackController";
 import Middleware from "./Middleware";
-import {Request as Req} from 'express';
 
 export interface Request extends Req {
     webtaskContext: WebtaskContext
@@ -33,12 +31,12 @@ class App {
     private middleware(): void {
         this.express.use(logger('dev'));
         this.express.use(bodyParser.json());
-        this.express.use(bodyParser.urlencoded({ extended: false }));
+        this.express.use(bodyParser.urlencoded({extended: false}));
 
         // catch 404 and forward to error handler
 
 
-        this.express.use((err:any, req: Request, res: Response, next: NextFunction) => {
+        this.express.use((err: any, req: Request, res: Response, next: NextFunction) => {
             // error handlers
 
             // development error handler
