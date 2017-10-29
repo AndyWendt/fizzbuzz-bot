@@ -1,23 +1,27 @@
 {
-  "name": "webtask-express-typescript-boilerplate",
+  "name": "fizzbuzz",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "npm run create -- --watch",
-    "create": "wt create index --secrets-file .env --bundle"
+    "create": "wt create index --secrets-file .env --bundle",
+    "serve": "wt serve index --secrets-file .env",
+    "upate": "wt update index --secrets-file .env --bundle",
+    "ngrok": "npm run serve && ngrok 8080"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@slack/client": "^3.14.1",
     "body-parser": "^1.17.2",
-    "express": "^4.15.3",
-    "webtask-tools": "^3.2.0",
     "debug": "^2.6.8",
     "ejs": "^2.5.6",
+    "express": "^4.15.3",
     "morgan": "^1.8.2",
     "request": "^2.81.0",
-    "vm2": "^3.5.2"
+    "vm2": "^3.5.2",
+    "webtask-tools": "^3.2.0"
   },
   "devDependencies": {
     "@types/chai": "^4.0.4",
