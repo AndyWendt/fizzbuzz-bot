@@ -1,8 +1,11 @@
 # FizzBuzz Slack Bot
 
-Code challenges for Slack
+Code challenges for Slack built on a Webtask backend
 
 ![Fizzbuzz Code Challenges for Slack](./documentation/fizzbuzz.gif)
+
+Use and deploy at your own risk.  While I used VM2 instead of `eval()` 
+in order to avoid many of the dangers of `eval()`, I'm sure there are possible security vulnerabilities. 
 
 ## Installation
 
