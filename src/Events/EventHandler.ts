@@ -2,8 +2,7 @@ import * as requestPromise from "request-promise";
 import {AttemptInterface, ChallengeManagerInterface, challenges} from "../Challenges/ChallengeManager";
 import {InvalidEventError} from "./InvalidEventError";
 import {ChallengeFailure} from "../Challenges/ChallengeFailure";
-
-const WebClient = require('@slack/client').WebClient;
+import {MessengerInterface} from "../Slack/Messenger";
 
 export interface EventHandlerInterface {
     handle(event: EventInterface): Promise<boolean>;
@@ -37,9 +36,11 @@ export interface EventInterface {
 export class EventHandler implements EventHandlerInterface {
 
     challengeManager: ChallengeManagerInterface;
+    messenger: MessengerInterface;
 
-    constructor(challengeManager: ChallengeManagerInterface) {
+    constructor(challengeManager: ChallengeManagerInterface, messenger: MessengerInterface) {
         this.challengeManager = challengeManager;
+        this.messenger = messenger;
     }
 
     public async handle(event: EventInterface) {
@@ -61,14 +62,7 @@ export class EventHandler implements EventHandlerInterface {
     }
 
     private async sendMessage(event: EventInterface, message: string) {
-        const webclient = new WebClient(process.env.SLACK_BOT_TOKEN);
-        webclient.chat.postMessage(event.channel, message, function (err, res) {
-            if (err) {
-                console.log('Error:', err);
-            } else {
-                console.log('Message sent');
-            }
-        });
+        return this.messenger.sendMessage(event.channel, message);
     }
 
     private async handleAttempt(event: EventInterface): Promise<AttemptInterface> {
