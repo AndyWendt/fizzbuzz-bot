@@ -3,6 +3,7 @@ import {Request} from '../App';
 import {EventHandler, EventHandlerInterface, EventInterface} from "../Events/EventHandler";
 import {ChallengeManager} from "../Challenges/ChallengeManager";
 import {InvalidEventError} from "../Events/InvalidEventError";
+import {Messenger} from "../Slack/Messenger";
 
 export class EventsController {
     eventHandler: EventHandlerInterface;
@@ -25,4 +26,4 @@ export class EventsController {
     }
 }
 
-export default new EventsController(new EventHandler(new ChallengeManager()));
+export default new EventsController(new EventHandler(new ChallengeManager(), new Messenger()));
