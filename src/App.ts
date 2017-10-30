@@ -4,6 +4,7 @@ import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
 import EventsController from "./Controllers/EventsController";
 import Middleware from "./Middleware";
+import SlashController from "./Controllers/SlashController";
 
 export interface Request extends Req {
     webtaskContext: WebtaskContext
@@ -69,6 +70,7 @@ class App {
         this.express.use('/', router);
 
         router.post('/events', Middleware.checkBodyToken, Middleware.urlVerification, EventsController.events);
+        router.post('/slash', SlashController.slash);
 
         this.express.use((req, res, next) => {
             console.log(req.baseUrl);
