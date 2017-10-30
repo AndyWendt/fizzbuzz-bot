@@ -1,6 +1,5 @@
 import {VM} from "vm2";
 import {FizzBuzzChallenge} from "./FizzBuzzChallenge";
-import {ChallengeFailure} from "./ChallengeFailure";
 
 export type challenges = "fizzbuzz";
 
@@ -25,31 +24,20 @@ export interface ChallengeManagerInterface {
     challengeTypeIsInvalid(name: string): boolean
 }
 
+export interface ChallengeResult {
+    result: Array<any>
+    elapsedTime: string
+}
+
 export class ChallengeManager implements ChallengeManagerInterface {
     challenges = ["fizzbuzz"];
 
     public calcScore(attempt: AttemptInterface): string {
         let challenge = ChallengeManager.challengeFactory(attempt.challengeType);
+        let challengeResult = this.runChallenge(attempt.code, challenge);
+        challenge.passes(challengeResult.result);
 
-        const vm = new VM({
-            timeout: 1000,
-            sandbox: {}
-        });
-
-        let code = challenge.prepCode(attempt.code);
-
-        let start = process.hrtime();
-        let result = vm.run(code);
-        console.log(result);
-        let elapsed = ChallengeManager.elapsed(start);
-
-        let pass = challenge.passes(result);
-
-        if (pass === false) {
-            throw new ChallengeFailure(`Attempt Failure. Elapsed Time: ${elapsed}`);
-        }
-
-        return elapsed;
+        return challengeResult.elapsedTime;
     }
 
     public challengeTypeIsInvalid(name: string): boolean {
@@ -72,5 +60,23 @@ export class ChallengeManager implements ChallengeManagerInterface {
         let precision = 3;
         let elapsed = process.hrtime(start)[1] / 1000000;
         return `${process.hrtime(start)[0]}s ${elapsed.toFixed(precision)}ms`;
+    }
+
+    private runChallenge(code: string, challenge: ChallengeInterface): ChallengeResult {
+        let preppedCode = challenge.prepCode(code);
+
+        const vm = new VM({
+            timeout: 1000,
+            sandbox: {}
+        });
+
+        let start = process.hrtime();
+        let result = vm.run(preppedCode);
+        let elapsed = ChallengeManager.elapsed(start);
+
+        return {
+            result: result,
+            elapsedTime: elapsed
+        };
     }
 }
