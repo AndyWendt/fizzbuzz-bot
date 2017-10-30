@@ -2,6 +2,8 @@
 
 Code challenges for Slack
 
+![Fizzbuzz Code Challenges for Slack](./documentation/fizzbuzz.gif)
+
 ## Installation
 
 * [Install Webtask](https://webtask.io/docs/wt-cli)
