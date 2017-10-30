@@ -5,6 +5,7 @@ import * as bodyParser from 'body-parser';
 import EventsController from "./Controllers/EventsController";
 import Middleware from "./Middleware";
 import SlashController from "./Controllers/SlashController";
+import InteractivesController from "./Controllers/InteractivesController";
 
 export interface Request extends Req {
     webtaskContext: WebtaskContext
@@ -71,6 +72,7 @@ class App {
 
         router.post('/events', Middleware.checkBodyToken, Middleware.urlVerification, EventsController.events);
         router.post('/slash', Middleware.checkBodyToken, SlashController.slash);
+        router.post('/interactive', Middleware.decodePayload, Middleware.checkBodyToken, InteractivesController.interaction);
 
         this.express.use((req, res, next) => {
             console.log(req.baseUrl);
