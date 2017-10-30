@@ -70,7 +70,7 @@ class App {
         this.express.use('/', router);
 
         router.post('/events', Middleware.checkBodyToken, Middleware.urlVerification, EventsController.events);
-        router.post('/slash', SlashController.slash);
+        router.post('/slash', Middleware.checkBodyToken, SlashController.slash);
 
         this.express.use((req, res, next) => {
             console.log(req.baseUrl);
