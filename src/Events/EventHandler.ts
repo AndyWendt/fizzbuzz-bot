@@ -1,7 +1,7 @@
 import * as requestPromise from "request-promise";
-import {AttemptInterface, ChallengeManagerInterface, challenges} from "../Challenge/ChallengeManager";
+import {AttemptInterface, ChallengeManagerInterface, challenges} from "../Challenges/ChallengeManager";
 import {InvalidEventError} from "./InvalidEventError";
-import {ChallengeFailure} from "../Challenge/ChallengeFailure";
+import {ChallengeFailure} from "../Challenges/ChallengeFailure";
 
 const WebClient = require('@slack/client').WebClient;
 
