@@ -2,7 +2,7 @@ import * as express from 'express';
 import {NextFunction, Request as Req, Response} from 'express';
 import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
-import EventsController from "./Routes/EventsController";
+import EventsController from "./Controllers/EventsController";
 import Middleware from "./Middleware";
 
 export interface Request extends Req {
