@@ -67,7 +67,7 @@ export class EventHandler implements EventHandlerInterface {
             if (err) {
                 console.log('Error:', err);
             } else {
-                console.log('Message sent: ', res);
+                console.log('Message sent');
             }
         });
     }
