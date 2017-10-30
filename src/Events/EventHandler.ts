@@ -46,7 +46,6 @@ export class EventHandler implements EventHandlerInterface {
         try {
             this.verifyEvent(event);
             let attempt = await this.handleAttempt(event);
-
             let score = await this.challengeManager.calcScore(attempt);
             await this.sendMessage(event, `Your score for ${attempt.challengeType} is ${score}`);
 
@@ -90,8 +89,13 @@ export class EventHandler implements EventHandlerInterface {
     }
 
     private verifyEvent(event: EventInterface) {
-        if (event.type !== 'message' && event.subtype !== 'file_share') {
-            throw new InvalidEventError('Event is not a message file_share');
+        console.log(event);
+        if (event.type !== 'message') {
+            throw new InvalidEventError('Event is not a message');
+        }
+
+        if (event.subtype !== 'file_share') {
+            throw new InvalidEventError('Event is not a file share');
         }
 
         if (event.file.filetype !== 'javascript') {

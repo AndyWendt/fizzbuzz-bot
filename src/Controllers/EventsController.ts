@@ -19,6 +19,7 @@ export class EventsController {
                 return res.status(200).json({handled: true});
             }
 
+            console.log('error', error);
             return res.status(500).json(error);
         });
     }
