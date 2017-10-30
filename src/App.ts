@@ -1,9 +1,19 @@
 import * as express from 'express';
-import {NextFunction, Request, Response} from 'express';
+import {NextFunction, Request as Req, Response} from 'express';
 import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
 import SlackController from "./Routes/SlackController";
 import Middleware from "./Middleware";
+
+export interface Request extends Req {
+    webtaskContext: WebtaskContext
+}
+
+export interface WebtaskContext {
+    secrets: {
+        SLACK_VERIFICATION_TOKEN: string
+    }
+}
 
 class App {
 
