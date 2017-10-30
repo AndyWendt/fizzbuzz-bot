@@ -1,6 +1,9 @@
 import * as requestPromise from "request-promise";
 import {AttemptInterface, ChallengeManagerInterface, challenges} from "../Challenge/ChallengeManager";
 import {InvalidEventError} from "../Errors/InvalidEventError";
+import {ChallengeFailure} from "../Challenge/ChallengeFailure";
+
+const WebClient = require('@slack/client').WebClient;
 
 export interface EventHandlerInterface {
     handle(event: EventInterface): Promise<boolean>;
@@ -40,13 +43,33 @@ export class EventHandler implements EventHandlerInterface {
     }
 
     public async handle(event: EventInterface) {
-        this.verifyEvent(event);
+        try {
+            this.verifyEvent(event);
+            let attempt = await this.handleAttempt(event);
 
-        let attempt = await this.handleAttempt(event);
-        let score = await this.challengeManager.calcScore(attempt);
-        console.log(score);
+            let score = await this.challengeManager.calcScore(attempt);
+            await this.sendMessage(event, `Your score for ${attempt.challengeType} is ${score}`);
 
-        return true;
+            return true;
+        } catch (e) {
+            if (e instanceof ChallengeFailure) {
+                await this.sendMessage(event, e.message);
+                return false;
+            } else {
+                throw e;
+            }
+        }
+    }
+
+    private async sendMessage(event: EventInterface, message: string) {
+        const webclient = new WebClient(process.env.SLACK_BOT_TOKEN);
+        webclient.chat.postMessage(event.channel, message, function (err, res) {
+            if (err) {
+                console.log('Error:', err);
+            } else {
+                console.log('Message sent: ', res);
+            }
+        });
     }
 
     private async handleAttempt(event: EventInterface): Promise<AttemptInterface> {
