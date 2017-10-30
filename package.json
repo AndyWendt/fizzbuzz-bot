@@ -7,7 +7,7 @@
     "start": "npm run create -- --watch",
     "create": "wt create index --secrets-file .env --bundle",
     "serve": "wt serve index --secrets-file .env",
-    "upate": "wt update index --secrets-file .env --bundle",
+    "update": "wt update index --secrets-file .env --bundle",
     "ngrok": "npm run serve && ngrok 8080"
   },
   "author": "",
