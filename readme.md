@@ -17,7 +17,8 @@ Code challenges for Slack
     
 * Deploy
     * `npm run create`
-    
+
+(There's probably something missing here)    
 
 ## Setup
 
