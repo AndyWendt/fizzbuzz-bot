@@ -89,7 +89,6 @@ export class EventHandler implements EventHandlerInterface {
     }
 
     private verifyEvent(event: EventInterface) {
-        console.log(event);
         if (event.type !== 'message') {
             throw new InvalidEventError('Event is not a message');
         }
