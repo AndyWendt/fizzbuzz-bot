@@ -1,5 +1,6 @@
 import {NextFunction, Response} from 'express';
 import {Request} from './App';
+import env from "./EnvHelper";
 
 export default class Middleware {
     public static decodePayload(req: Request, res: Response, next: NextFunction) {
@@ -11,7 +12,7 @@ export default class Middleware {
     }
 
     public static checkBodyToken(req: Request, res: Response, next: NextFunction) {
-        if (req.body.token !== req.webtaskContext.secrets.SLACK_VERIFICATION_TOKEN) {
+        if (req.body.token !== env.SLACK_VERIFICATION_TOKEN) {
             return res.status(401).json({
                 "error": "unauthorized"
             });

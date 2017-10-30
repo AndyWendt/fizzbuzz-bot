@@ -3,6 +3,7 @@ import {AttemptInterface, ChallengeManagerInterface, challenges} from "../Challe
 import {InvalidEventError} from "./InvalidEventError";
 import {ChallengeFailure} from "../Challenges/ChallengeFailure";
 import {MessengerInterface} from "../Slack/Messenger";
+import env from "../EnvHelper";
 
 export interface EventHandlerInterface {
     handle(event: EventInterface): Promise<boolean>;
@@ -75,7 +76,7 @@ export class EventHandler implements EventHandlerInterface {
             method: 'GET',
             uri: event.file.url_private,
             headers: {
-                Authorization: `Bearer ${process.env.SLACK_BOT_TOKEN}`
+                Authorization: `Bearer ${env.SLACK_BOT_TOKEN}`
             }
         };
 

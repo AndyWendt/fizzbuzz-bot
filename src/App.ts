@@ -14,6 +14,8 @@ export interface Request extends Req {
 export interface WebtaskContext {
     secrets: {
         SLACK_VERIFICATION_TOKEN: string
+        SLACK_BOT_TOKEN: string
+        SLACK_OAUTH_TOKEN: string
     }
 }
 
