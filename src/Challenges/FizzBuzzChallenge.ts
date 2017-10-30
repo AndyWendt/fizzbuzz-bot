@@ -1,7 +1,9 @@
 import {ChallengeInterface} from "./ChallengeManager";
+import {ChallengeFailure} from "./ChallengeFailure";
 
 export class FizzBuzzChallenge implements ChallengeInterface {
 
+    name = 'fizzbuzz';
     lowerLimit: number;
     upperLimit: number;
     numberOfEntries = 101;
@@ -21,10 +23,10 @@ export class FizzBuzzChallenge implements ChallengeInterface {
 
     public passes(result: Array<any>): boolean {
         if (result.length !== this.numberOfEntries) {
-            return false;
+            throw new ChallengeFailure(`Failed challenge: ${this.name}`)
         }
 
-        this.checkFizzBuzzArray(result);
+        return this.checkFizzBuzzArray(result);
     }
 
     private randomInt(min, max) {
