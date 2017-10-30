@@ -1,8 +1,8 @@
 import {NextFunction, Response} from 'express';
 import {Request} from '../App';
-import {EventHandler, EventHandlerInterface, EventInterface} from "../Slack/EventHandler";
+import {EventHandler, EventHandlerInterface, EventInterface} from "../Events/EventHandler";
 import {ChallengeManager} from "../Challenge/ChallengeManager";
-import {InvalidEventError} from "../Errors/InvalidEventError";
+import {InvalidEventError} from "../Events/InvalidEventError";
 
 export class SlackController {
     eventHandler: EventHandlerInterface;
