@@ -1,5 +1,6 @@
 import {VM} from "vm2";
 import {FizzBuzzChallenge} from "./FizzBuzzChallenge";
+import {ChallengeFailure} from "./ChallengeFailure";
 
 export type challenges = "fizzbuzz";
 
@@ -39,12 +40,13 @@ export class ChallengeManager implements ChallengeManagerInterface {
 
         let start = process.hrtime();
         let result = vm.run(code);
+        console.log(result);
         let elapsed = ChallengeManager.elapsed(start);
 
         let pass = challenge.passes(result);
 
         if (pass === false) {
-            return "FAILURE";
+            throw new ChallengeFailure(`Attempt Failure. Elapsed Time: ${elapsed}`);
         }
 
         return elapsed;
