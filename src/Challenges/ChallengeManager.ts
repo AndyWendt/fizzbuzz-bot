@@ -10,7 +10,7 @@ export interface AttemptInterface {
 }
 
 export interface ChallengeInterface {
-    rules(): string
+    instructions(): string
 
     prepCode(code: string): string
 

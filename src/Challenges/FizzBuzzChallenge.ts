@@ -11,7 +11,7 @@ export class FizzBuzzChallenge implements ChallengeInterface {
         this.upperLimit = this.lowerLimit + (this.numberOfEntries - 1);
     }
 
-    public rules(): string {
+    public instructions(): string {
         return 'Rules';
     }
 
