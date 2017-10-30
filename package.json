@@ -15,6 +15,7 @@
   "dependencies": {
     "@slack/client": "^3.14.1",
     "@types/request-promise": "^4.1.39",
+    "babel-polyfill": "^6.26.0",
     "body-parser": "^1.17.2",
     "debug": "^2.6.8",
     "ejs": "^2.5.6",
