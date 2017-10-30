@@ -14,7 +14,11 @@ export class FizzBuzzChallenge implements ChallengeInterface {
     }
 
     public instructions(): string {
-        return 'Rules';
+        return '*Challenge:* Write a function that prints the numbers from _low_ to _high_. ' +
+            '\r\n But for multiples of three print “Fizz” instead of the number and for ' +
+            'the multiples of five print “Buzz”. \r\nFor numbers which are multiples of both ' +
+            'three and five print “FizzBuzz”.  \r\n\r\nFunction signature must be `fizzbuzz(low: int, high: int)`' +
+            '\r\n\r\n *Submit code* as a code snippet in javascript form with the name of *fizzbuzz*.';
     }
 
     public prepCode(code: string): string {
