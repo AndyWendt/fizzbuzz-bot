@@ -1,4 +1,6 @@
-# Webtask Express + TypeScript Boilerplate
+# FizzBuzz Slack Bot
+
+Code challenges for Slack
 
 ## Installation
 
