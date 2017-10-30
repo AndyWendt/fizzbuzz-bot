@@ -4,7 +4,7 @@ import {EventHandler, EventHandlerInterface, EventInterface} from "../Events/Eve
 import {ChallengeManager} from "../Challenges/ChallengeManager";
 import {InvalidEventError} from "../Events/InvalidEventError";
 
-export class SlackController {
+export class EventsController {
     eventHandler: EventHandlerInterface;
 
     constructor(eventHandler: EventHandlerInterface) {
@@ -24,4 +24,4 @@ export class SlackController {
     }
 }
 
-export default new SlackController(new EventHandler(new ChallengeManager()));
+export default new EventsController(new EventHandler(new ChallengeManager()));

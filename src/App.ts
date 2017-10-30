@@ -2,7 +2,7 @@ import * as express from 'express';
 import {NextFunction, Request as Req, Response} from 'express';
 import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
-import SlackController from "./Routes/SlackController";
+import EventsController from "./Routes/EventsController";
 import Middleware from "./Middleware";
 
 export interface Request extends Req {
@@ -68,7 +68,7 @@ class App {
         let router = express.Router();
         this.express.use('/', router);
 
-        router.post('/events', Middleware.checkBodyToken, Middleware.urlVerification, SlackController.events);
+        router.post('/events', Middleware.checkBodyToken, Middleware.urlVerification, EventsController.events);
 
         this.express.use((req, res, next) => {
             console.log(req.baseUrl);
